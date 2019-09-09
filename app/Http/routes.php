@@ -16,7 +16,9 @@ use App\User;
 Route::get('/', function () {
     return view('welcome');
 });
-
+/********
+Adding info here
+*/ 
 
 //insert data
 
