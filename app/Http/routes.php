@@ -77,12 +77,12 @@ Route::get('/insert', function(){
 // $post = Post::where('users_count','<',50)->firstOrFail();	
 // });
 
-Route::get('/basicinsert',function(){
-	$post = new Post;
-	$post->title='New Eloquent title insert';
-	$post->content='Wow eloquent is really cool,look at this content';
-	$post->save();
-});
+// Route::get('/basicinsert',function(){
+// 	$post = new Post;
+// 	$post->title='New Eloquent title insert';
+// 	$post->content='Wow eloquent is really cool,look at this content';
+// 	$post->save();
+// });
 // Route::get('/basicupdate',function(){
 // 	$post = Post::find(2);
 // 	$post->title='New Eloquent title update';
@@ -144,3 +144,14 @@ Route::get('/basicinsert',function(){
 // Route::get('/post/{id}/user',function($id){
 // 	return Post::find($id)->user->name;
 // });
+
+
+//one to many relationship
+
+Route::get('/posts',function(){
+	$user = User::find(1);
+	foreach ($user->posts as $post) {
+		echo $post->title."<br>";
+		// return $post->title."<br>";
+	}
+});
