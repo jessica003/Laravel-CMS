@@ -1,5 +1,6 @@
 <?php
 use App\Post;
+use App\Country;
 use App\User;
 /*
 |--------------------------------------------------------------------------
@@ -159,10 +160,33 @@ Route::get('/insert', function(){
 
 //Many to many relationship
 
-Route::get('/user/{id}/role',function($id){
-$user = User::find($id)->roles()->orderBy('id')->get();
-return $user;
+// Route::get('/user/{id}/role',function($id){
+// $user = User::find($id)->roles()->orderBy('id')->get();
+// return $user;
+// // foreach ($user->roles as $role) {
+// // 	return $role->name;
+// // }
+// });
+
+//Accessing the intermediate table/pivot
+
+// Route::get('user/pivot',function(){
+// $user = User::find(1);
+
 // foreach ($user->roles as $role) {
-// 	return $role->name;
+// 	echo $role->pivot->created_at;
 // }
+
+// });
+
+
+//Has many through relationship
+
+Route::get('/user/country',function(){
+	$country = Country::find(3);
+	foreach ($country->posts as $post) {
+		
+		return $post->title;
+	}
+
 });
