@@ -1,5 +1,6 @@
 <?php
 use App\Post;
+use App\Photo;
 use App\Country;
 use App\User;
 /*
@@ -182,11 +183,29 @@ Route::get('/insert', function(){
 
 //Has many through relationship
 
-Route::get('/user/country',function(){
-	$country = Country::find(3);
-	foreach ($country->posts as $post) {
+// Route::get('/user/country',function(){
+// 	$country = Country::find(3);
+// 	foreach ($country->posts as $post) {
 		
-		return $post->title;
-	}
+// 		return $post->title;
+// 	}
 
+// });
+
+
+//polymorphic relationship
+
+// Route::get('post/{id}/photos',function($id){
+// 	$post = Post::find($id);
+// 	foreach ($post->photos as $photo) {
+// 		echo $photo->path."<br>";
+// 	}
+// });
+
+//inverse of polymorphic relationship
+
+
+Route::get('photo/{id}/post',function($id){
+	$photo = Photo::findOrFail($id);
+	return $photo->imageable;
 });
